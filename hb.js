@@ -2,7 +2,7 @@ var hbjs = require("handbrake-js");
 
 hbjs.spawn({ input: "sample.mp4", output: "sample.m4v" })
   .on("error", function(err){
-    // invalid user input, no video found etc
+    console.log(err);
   })
   .on("progress", function(progress){
     console.log(
@@ -10,4 +10,9 @@ hbjs.spawn({ input: "sample.mp4", output: "sample.m4v" })
       progress.percentComplete, 
       progress.eta
     );
+  })
+  .on("complete", function(success){
+   console.log(
+     "Transcode complete"
+   );
   });
